@@ -64,13 +64,11 @@ class PictureLayout < ViewGroup
     maxHeight = 0
     maxWidth = 0
 
-    i = 0
-    while i < count
+    count.times do |i|
       child = getChildAt(i)
       if child.getVisibility() != View.GONE
         measureChild(child, widthMeasureSpec, heightMeasureSpec)
       end
-      i = i + 1
     end
 
     maxWidth = getPaddingLeft() + getPaddingRight()
@@ -121,15 +119,13 @@ class PictureLayout < ViewGroup
 
   def onLayout(changed:Boolean, l:int, t:int, r:int, b:int)
     count = getChildCount()
-    i = 0
-    while i < count
+    count.times do |i|
       child = getChildAt(i)
       if child.getVisibility() != View.GONE
         childLeft = getPaddingLeft()
         childTop = getPaddingTop()
         child.layout(childLeft, childTop, childLeft + child.getMeasuredWidth(), childTop + child.getMeasuredHeight())
       end
-      i = i + 1
     end
   end
 end
