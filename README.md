@@ -27,8 +27,8 @@ going to go ahead and claim that it should build on pretty much anything.
   Activity.
 
 * **No enums** - Instead, these were shipped off to utility classes. The only
-  real example is that the COLOR enum became the ColorChart class, which has
-  class methods for get(int) and length.
+  real example is that the PaintMode enum became the PaintMode class, which has
+  class methods for each of the modes.
 
 * **No constants** - I saw chatter all over the place (that is, in the two
   relevant, unique Google results) that class constants might be working. I can
@@ -36,7 +36,14 @@ going to go ahead and claim that it should build on pretty much anything.
   unsurprisingly lacking). At any rate, these were converted to class methods
   that return the proper values. The side-effect of this is that they require
   tacking the class name on the front when used (unless used in their own class
-  context, and that's proven to be a little iffy over the last six hours).
+  context, and that's proven to be a little iffy over the last six hours). One
+  exception is that the COLORS constant was especially problematic (due to the
+  next point), so it was shipped off to the ColorChart class.
+
+* **No Mirah Arrays** - These things are currently made of badness, and the
+  accepted way to get a real array has proven to make the Dalvik optimizer
+  take to heavy drinking. There's a lot of chatter about making them better,
+  so this may be revisited eventually.
 
 * **Not Idiomatic** - This is a straight translation from Java to Mirah except
   for the places where that was terribly problematic (like the mHandler bit in
@@ -47,4 +54,5 @@ going to go ahead and claim that it should build on pretty much anything.
 
 ## History ##
 
+* 1.0.1 - 20121223 - Replaced busted while loops with idiomatic "times do" loops
 * 1.0.0 - 20121223 - Initial Commit shiz

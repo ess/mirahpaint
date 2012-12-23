@@ -113,10 +113,8 @@ class PaintView < View
       _N = event.getHistorySize()
       scaleX = event.getXPrecision() * PaintView.trackball_scale
       scaleY = event.getYPrecision() * PaintView.trackball_scale
-      i = 0
-      while i < _N
+      _N.times do |i|
         moveTrackball(event.getHistoricalX(i) * scaleX, event.getHistoricalY(i) * scaleY)
-        i = i + 1
       end
       moveTrackball(event.getX() * scaleX, event.getY() * scaleY)
     end
@@ -163,10 +161,8 @@ class PaintView < View
     if action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE || action == MotionEvent.ACTION_HOVER_MOVE
       _N = event.getHistorySize()
       _P = event.getPointerCount()
-      i = 0
-      while i < _N
-        j = 0
-        while j < _P
+      _N.times do |i|
+        _P.times do |j|
           paint(getPaintModeForTool(event.getToolType(j), mode),
                 event.getHistoricalX(j, i),
                 event.getHistoricalY(j, i),
@@ -177,13 +173,10 @@ class PaintView < View
                 event.getHistoricalAxisValue(MotionEvent.AXIS_DISTANCE, j, i),
                 event.getHistoricalAxisValue(MotionEvent.AXIS_TILT, j, i)
                )
-          j = j + 1
         end
-        i = i + 1
       end
 
-      j = 0
-      while j < _P
+      _P.times do |j|
         paint(getPaintModeForTool(event.getToolType(j), mode),
               event.getX(j),
               event.getY(j),
@@ -194,7 +187,6 @@ class PaintView < View
               event.getAxisValue(MotionEvent.AXIS_DISTANCE, j),
               event.getAxisValue(MotionEvent.AXIS_TILT, j)
              )
-        j = j + 1
       end
       @mCurX = event.getX()
       @mCurY = event.getY()
@@ -228,8 +220,7 @@ class PaintView < View
     cx = nx * cd
     cy = ny * cd
 
-    i = 0
-    while i < PaintView.splat_vectors
+    PaintView.splat_vectors.times do |i|
       direction = @mRandom.nextDouble() * Math.PI * 2
       dispersion = @mRandom.nextGaussian() * 0.02
       vx = Math.cos(direction) * dispersion
@@ -253,14 +244,10 @@ class PaintView < View
       py = float(vy * pd)
 
       @mCanvas.drawCircle(x + px - cy, y + py - cy, float(1.0), paint)
-      i = i + 1
     end
   end
 
   def pick_a_color:int
-    /*if @mColorIndex == nil*/
-      /*@mColorIndex = 0*/
-    /*end*/
     ColorChart.get(@mColorIndex)
   end
 
