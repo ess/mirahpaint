@@ -44,3 +44,7 @@ going to go ahead and claim that it should build on pretty much anything.
 
 * **Stuff I've Forgotten** - This translation was born of insomnia, so there is
   a pretty good chance that I've missed a few dragons.
+
+## History ##
+
+* 1.0.0 - 20121223 - Initial Commit shiz
