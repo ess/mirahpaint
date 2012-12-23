@@ -54,4 +54,5 @@ going to go ahead and claim that it should build on pretty much anything.
 
 ## History ##
 
+* 1.0.1 - 20121223 - Replaced busted while loops with idiomatic "times do" loops
 * 1.0.0 - 20121223 - Initial Commit shiz
